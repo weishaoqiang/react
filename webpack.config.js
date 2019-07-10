@@ -24,8 +24,18 @@ const config = {
       use: ['babel-loader'],
       exclude: /node_modules/
     }, {
+      test: /\.css$/,
+      loaders: [
+        'style-loader?sourceMap',
+        'css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+      ]
+    },{
       test: /\.less$/,
-      use: ['style-loader', 'css-loader', 'less-loader']
+      loaders: [
+        'style-loader?sourceMap',
+        'css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+        'less-loader'
+      ]
     }]
   },
   plugins: [

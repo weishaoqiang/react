@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import homeStyle from './home.css'
+
 class HelloMessage extends React.Component {
   constructor(props) {
     super(props)
@@ -12,7 +14,9 @@ class HelloMessage extends React.Component {
     this.setState({name: 'haha'})
   }
   render() {
-    return (<div onClick={this.say}>Hello, {this.state.name}</div>)
+    return (
+      <div className="home"></div>
+    )
   }
 }
 
