@@ -25,15 +25,36 @@ const config = {
       exclude: /node_modules/
     }, {
       test: /\.css$/,
-      loaders: [
-        'style-loader?sourceMap',
-        'css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+      use: [
+        'style-loader',
+        {
+          loader: 'css-loader',
+          options: {
+            // modules: true,
+            modules: {
+              mode: 'local',
+              localIdentName: '[local__[hash:base64:5]'
+            },
+            import: true,
+            importLoaders: true,
+          }
+        }
       ]
-    },{
+    }, {
       test: /\.less$/,
-      loaders: [
-        'style-loader?sourceMap',
-        'css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+      use: [
+        'style-loader',
+        {
+          loader: 'css-loader',
+          options: {
+            modules: {
+              mode: 'local',
+              localIdentName: '[local]__[hash:base64:5]'
+            },
+            import: true,
+            importLoaders: true,
+          }
+        },
         'less-loader'
       ]
     }]
