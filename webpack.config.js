@@ -20,44 +20,48 @@ const config = {
   },
   module: {
     rules: [{
-      test: /\.(js|jsx)$/,
-      use: ['babel-loader'],
-      exclude: /node_modules/
-    }, {
-      test: /\.css$/,
-      use: [
-        'style-loader',
-        {
-          loader: 'css-loader',
-          options: {
-            // modules: true,
-            modules: {
-              mode: 'local',
-              localIdentName: '[local__[hash:base64:5]'
-            },
-            import: true,
-            importLoaders: true,
+        test: /\.(js|jsx)$/,
+        use: ['babel-loader'],
+        exclude: /node_modules/
+      }, {
+        test: /\.(css|less)$/,
+        include: [/node_modules\/antd/, /app\/assets\/common/],
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: require.resolve('less-loader'),
+            options: {
+              importLoaders: 1,
+              javascriptEnabled: true
+            }
           }
-        }
-      ]
-    }, {
-      test: /\.less$/,
-      use: [
-        'style-loader',
-        {
-          loader: 'css-loader',
-          options: {
-            modules: {
-              mode: 'local',
-              localIdentName: '[local]__[hash:base64:5]'
-            },
-            import: true,
-            importLoaders: true,
+        ]
+      }, {
+        test: /\.(css|less)$/,
+        exclude: [/node_modules/, /app\/assets\/common/],
+        use: [
+          'style-loader',
+          {
+            loader: require.resolve('css-loader'),
+            options: {
+              modules: {
+                mode: 'local',
+                localIdentName: '[local]__[hash:base64:5]'
+              },
+              import: true,
+              importLoaders: true,
+            }
+          },
+          {
+            loader: require.resolve('less-loader'),
+            options: {
+              importLoaders: 1,
+              javascriptEnabled: true
+            }
           }
-        },
-        'less-loader'
-      ]
-    }]
+        ]
+      }]
   },
   plugins: [
     new htmlPlugin({

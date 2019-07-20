@@ -1,10 +1,17 @@
 import React from 'react'
 import { render } from 'react-dom'
-import Router from '@/router'
+import AppRouter from '@/router'
+import { LocaleProvider, Input } from 'antd'
+import zhCN from 'antd/lib/locale-provider/zh_CN'
+import moment from 'moment'
+import 'moment/locale/zh-cn'
+import 'antd/dist/antd.css'
+moment.locale('zh-cn')
+require('@/assets/common/common.less')
 
-console.log(RouterConfig)
-require('@/assets/common/common.css')
 render(
-  <Router />,
+  <LocaleProvider locale={zhCN}>
+    <AppRouter/>
+  </LocaleProvider>,
   document.getElementById('app')
-)
+) 
