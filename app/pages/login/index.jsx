@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Input, Form, Button, Row, Col, Icon, } from 'antd'
+import { login } from '@/api/login.js'
 
 import style from "./login.less"
 
@@ -11,6 +12,18 @@ class LoginForm extends Component {
       email: '',
       password: ''
     }
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+  
+  handleSubmit(e) {
+    e.preventDefault()
+    this.props.form.validateFields((err, values) => {
+      if(!err) {
+        login(values).then(res => {
+          console.log(res)
+        })
+      }
+    })
   }
 
   render() {
@@ -19,11 +32,15 @@ class LoginForm extends Component {
       labelCol: { sm: { span: 6 } },
       wrapperCol: { sm: { span: 14 } }
     }
+    const formButonLayout = {
+      wrapperCol: { xs: { span: 24, offset: 0 }, sm: { span: 16, offset: 6 } }
+    }
+
     return (
       <div className={style.login}>
         <div className={style.inputBox}>
-          <From>
-            <From.Item { ...formItemLayout } className="Item" label="邮箱">{
+          <Form {...formItemLayout} onSubmit={this.handleSubmit}>
+            <Form.Item className="Item" label="邮箱">{
               getFieldDecorator('email', {
                 rules: [
                   {type: 'email', massage: 'the input is not valid E-mail'},
@@ -31,18 +48,23 @@ class LoginForm extends Component {
                 ],
               })(
                 <Input allowClear placeholder="email" />
-              )}</From.Item>
-              <Form.Item>{
+              )}</Form.Item>
+              <Form.Item className="Item" label="密码">{
                 getFieldDecorator('password', {
                   rules: [
-                    { required: true, massage: '' }
+                    { required: true, massage: 'place input password!' }
                   ]
-                })
+                })(
+                  <Input.Password placeholder="password" />
+                )
               }</Form.Item>
-            <From.Item { ...formItemLayout } className="Item" label="密码">
-              
-            </From.Item>
-          </From>
+              <Form.Item {...formButonLayout}>
+                <Row>
+                  <Col span={12}><Button type="link">注册</Button></Col>
+                  <Col span={12}><Button type="primary" htmlType="submit">登陆</Button></Col>
+                </Row>
+              </Form.Item>
+          </Form>
         </div>
       </div>
     )

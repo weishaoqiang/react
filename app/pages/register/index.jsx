@@ -26,7 +26,6 @@ class RegisterForm extends Component {
     e.preventDefault()
     this.props.form.validateFieldsAndScroll((err,values) => {
       if (!err) {
-        console.log(values)
         register(values).then(res => {
           console.log(res)
         })
@@ -59,7 +58,7 @@ class RegisterForm extends Component {
     }
     const tailFormItemLayout = {
       wrapperCol: { xs: { span: 24, offset: 0 }, sm: { span: 16, offset: 8 }},
-    };
+    }
     return (
       <div className={style.register}>
         <div className={style.inputBox}>

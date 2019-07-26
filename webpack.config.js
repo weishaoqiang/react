@@ -1,6 +1,8 @@
 const path = require('path')
 const htmlPlugin = require('html-webpack-plugin')
 
+console.log(path.resolve(__dirname, 'node_modules'))
+
 const config = {
   mode: 'development',
   entry: {
@@ -14,7 +16,7 @@ const config = {
     }
   },
   output: {
-    path: path.resolve(__dirname, '/dist'),
+    path: path.resolve(__dirname, 'dist'),
     filename: '[name].[chunkhash:8].js',
     chunkFilename: '[name].[chunkhash:8].js'
   },
@@ -23,23 +25,14 @@ const config = {
         test: /\.(js|jsx)$/,
         use: ['babel-loader'],
         exclude: /node_modules/
-      }, {
+      },
+      {
         test: /\.(css|less)$/,
-        include: [/node_modules\/antd/, /app\/assets\/common/],
-        use: [
-          'style-loader',
-          'css-loader',
-          {
-            loader: require.resolve('less-loader'),
-            options: {
-              importLoaders: 1,
-              javascriptEnabled: true
-            }
-          }
-        ]
-      }, {
-        test: /\.(css|less)$/,
-        exclude: [/node_modules/, /app\/assets\/common/],
+        // exclude: [/node_modules/, /app\/assets\/common/],
+        exclude: [
+          path.resolve(__dirname, 'node_modules'),
+          path.resolve(__dirname, 'app/assets/common/'),
+        ],
         use: [
           'style-loader',
           {
@@ -53,6 +46,25 @@ const config = {
               importLoaders: true,
             }
           },
+          {
+            loader: require.resolve('less-loader'),
+            options: {
+              importLoaders: 1,
+              javascriptEnabled: true
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(css|less)$/,
+        // include: [/node_modules\/antd/, /app\/assets\/common/],
+        include: [
+          path.resolve(__dirname, 'node_modules'),
+          path.resolve(__dirname, 'app/assets/common'),
+        ],
+        use: [
+          'style-loader',
+          'css-loader',
           {
             loader: require.resolve('less-loader'),
             options: {
