@@ -1,6 +1,6 @@
 export function setToken(token) {
   try {
-    setStorage(localStorage, 'token', token)
+    setStorage(localStorage, 'TT-token', token)
   } catch(err) {
     console.error(err)
   }
@@ -8,7 +8,7 @@ export function setToken(token) {
 
 export function getToken() {
   try {
-    return getStorage(localStorage, 'token')
+    return getStorage(localStorage, 'TT-token')
   } catch(err) {
     console.error(err)
   }

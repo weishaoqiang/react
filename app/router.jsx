@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import createReactClass from 'create-react-class'
-import { HashRouter as Router, Route, Switch, IndexRoute } from 'react-router-dom'
+import { HashRouter as Router, Route, Switch } from 'react-router-dom'
 
 // 引入组件
 import Home from '@/pages/home'
@@ -19,7 +19,7 @@ class AppRouter extends Component{
       <Router>
         <Switch>
           <Route path="/" exact component={DefaultComponent}></Route>
-          <Route path="/home" component={Home}></Route>
+          <Route path="/home" component={Home} ></Route>
           <Route path="/login" component={Login}></Route>
           <Route path="/register" component={Register}></Route>
         </Switch>

@@ -1,13 +1,10 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { createHashHistory } from "history"
 import { Input, Form, Button, Row, Col, Icon, } from 'antd'
 import { login } from '@/api/login.js'
 import { setToken } from '@/utils/utils'
 
 import style from "./login.less"
-
-console.log(createHashHistory)
 
 class LoginForm extends Component {
   constructor(props) {
@@ -19,15 +16,14 @@ class LoginForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
   
-
   handleSubmit(e) {
+    console.log(this.props)
     e.preventDefault()
     this.props.form.validateFields(async (err, values) => {
       if(!err) {
         const resp = await login(values)
         setToken(resp.data.token)
-        // const history = createHashHistory.createHistory()
-        // history.push('/home')
+        this.props.history.push('/home')
       }
     })
   }
