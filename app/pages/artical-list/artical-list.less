@@ -1,0 +1,30 @@
+.content {
+  min-height: 100%;
+  background-color: #fff;
+  padding: 10px;
+  .title {
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      left: 5px;
+      top: 50%;
+      width: 2px;
+      height: 15px;
+      background-color: #ccc;
+      transform: translateY(-50%)
+    }
+  }
+  .list {
+    padding: 10px;
+    .item {
+      height: 48px;
+      line-height: 48px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+  }
+}

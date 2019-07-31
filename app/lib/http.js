@@ -4,6 +4,9 @@ import { getToken } from '@/utils/utils'
 
 Axios.defaults.baseURL = `http://localhost:5000/admin/api/`
 Axios.defaults.timeout = 30000
+// axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+
 
 const Notification = (type, message) => {
   notification[type]({
@@ -11,9 +14,12 @@ const Notification = (type, message) => {
   })
 }
 
+
 // Add a request interceptor
 Axios.interceptors.request.use(function (config) {
   // Do something before request is sent
+  config.headers['Authorization'] = getToken()
+  config.headers['Content-Type'] = 'application/x-www-form-urlencoded'
   return config
 }, function (error) {
   // Do something with request error

@@ -19,9 +19,9 @@ class AppRouter extends Component{
       <Router>
         <Switch>
           <Route path="/" exact component={DefaultComponent}></Route>
-          <Route path="/home" component={Home} ></Route>
-          <Route path="/login" component={Login}></Route>
           <Route path="/register" component={Register}></Route>
+          <Route path="/login" component={Login}></Route>
+          <Route path="/home" component={Home}></Route>
         </Switch>
       </Router>
     )
