@@ -7,6 +7,8 @@
     font-size: 18px;
     font-weight: bold;
     position: relative;
+    display: flex;
+    justify-content: space-between;
     &::before {
       content: "";
       position: absolute;
@@ -21,10 +23,22 @@
   .list {
     padding: 10px;
     .item {
+      min-height: 48px;
+      margin-bottom: 10px;
+      padding: 5px 0;
+    }
+    .item-header{
       height: 48px;
       line-height: 48px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .item-title {
       font-size: 16px;
-      font-weight: bold;
+
+    }
+    .item-content {
+
     }
   }
 }

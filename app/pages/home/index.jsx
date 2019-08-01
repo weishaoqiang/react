@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { Layout, Menu, Breadcrumb, Icon } from 'antd'
 import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom'
-import ArticalList from '@/pages/artical-list'
+import ArticalList from '@/pages/artical-maneger/artical-list'
+import AddArtical from '@/pages/artical-maneger/add-artical'
 
 const { SubMenu } = Menu
 const { Header, Content, Sider } = Layout
 import style from '@/pages/Home/home.less'
-import MenuItem from 'antd/lib/menu/MenuItem'
 
 export default class Home extends Component {
   constructor(props) {
@@ -47,6 +47,7 @@ export default class Home extends Component {
           <Content className={style.main}>
             <Router>
               <Route path="/home/artical-list" component={ArticalList}></Route>
+              <Route path="/home/add-artical" component={AddArtical}></Route>
             </Router>
           </Content>
         </Layout>
