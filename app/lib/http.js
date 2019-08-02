@@ -28,6 +28,7 @@ Axios.interceptors.request.use(function (config) {
 // Add a response interceptor
 Axios.interceptors.response.use(function (response) {
   // Do something with response data
+  console.log(response)
   if (!response.data.success) {
     Notification('error', response.data.message)
     return Promise.reject(response.data)
